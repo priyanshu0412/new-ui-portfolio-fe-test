@@ -1,23 +1,35 @@
 "use client";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
-const CaptchaGlobal = ({ onVerify }) => {
+// ----------------------------------------
+
+const CaptchaSection = ({ onVerify }) => {
   useEffect(() => {
     const siteKey = process.env.NEXT_PUBLIC_CLOUDFLARE_SITE_KEY;
 
-    if (window.turnstile && siteKey) {
-      window.turnstile.render("#cf-turnstile", {
-        sitekey: siteKey,
-        size: "invisible",
-        callback: (token) => {
-          console.log("✅ Human verified:", token);
-          onVerify(token);
-        },
-      });
-    }
-  }, []);
+    const checkTurnstile = setInterval(() => {
+      if (window.turnstile && siteKey) {
+        clearInterval(checkTurnstile);
 
-  return <div id="cf-turnstile"></div>;
+        window.turnstile.render("#cf-turnstile", {
+          sitekey: siteKey,
+          theme: "light",
+          appearance: "always",
+          callback: (token) => {
+            onVerify(token);
+          },
+        });
+      }
+    }, 200);
+
+    return () => clearInterval(checkTurnstile);
+  }, [onVerify]);
+
+  return (
+    <div className="flex h-screen justify-center items-center">
+      <div id="cf-turnstile"></div>
+    </div>
+  );
 };
 
-export default CaptchaGlobal;
+export default CaptchaSection;
