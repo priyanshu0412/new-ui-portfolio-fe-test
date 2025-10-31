@@ -72,14 +72,17 @@ const AboutMeSection = () => {
                                 From concept to deployment, I ensure every project meets the highest standards of quality and performance. My approach combines technical expertise with creative problem-solving to bring your vision to life.
                             </p>
                             <div className='flex flex-col md:flex-row gap-y-4 md:gap-x-4 pt-2'>
-                                <button className='flex dark:hover:bg-[#1e293b] border-[#e2e8f0] dark:bg-[#020817] dark:border-[#1e293b]  hover:bg-[#f1f5f9] rounded-full shadow-sm border-[1px] justify-center font-medium text-sm py-2 px-4 items-center gap-x-2'>
+                                <Link
+                                    href="Priyanshu-Agrawal-CV.pdf"
+                                    download="Priyanshu-Agrawal-CV.pdf"
+                                    className='flex dark:hover:bg-[#1e293b] border-[#e2e8f0] dark:bg-[#020817] dark:border-[#1e293b]  hover:bg-[#f1f5f9] rounded-full shadow-sm border-[1px] justify-center font-medium text-sm py-2 px-4 items-center gap-x-2'>
                                     <Icon
                                         icon={"material-symbols:download-rounded"}
                                         width={20}
                                         height={20}
                                     />
                                     <p className='text-[#020817] dark:text-white'>Download Resume</p>
-                                </button>
+                                </Link>
                                 <Link href={"/#contact"}>
                                     <button className='flex dark:hover:bg-[#1e293b] hover:border-[#e2e8f0] hover:bg-[#f1f5f9] rounded-full justify-center font-medium text-sm py-2 px-4 items-center gap-x-2'>
                                         <Icon
