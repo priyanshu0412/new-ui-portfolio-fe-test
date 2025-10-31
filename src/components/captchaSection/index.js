@@ -1,21 +1,23 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 
-// -----------------------------------
+const CaptchaSection = ({ onVerify }) => {
+  useEffect(() => {
+    if (window.turnstile) {
+      window.turnstile.render("#cf-turnstile", {
+        sitekey: process.env.NEXT_PUBLIC_CLOUDFLARE_SITE_KEY,
+        callback: (token) => {
+          console.log("✅ Human verified:", token);
+          onVerify && onVerify(token);
+        },
+        "response-field": false,
+        theme: "light",
+        size: "invisible", 
+      });
+    }
+  }, []);
 
-const CaptchaSection = () => {
-    return (
-        <>
-        
-            <div
-                className="cf-challenge mt-6 flex justify-center"
-                data-sitekey={process.env.NEXT_PUBLIC_CLOUDFLARE_SITE_KEY}
-                data-theme="light"
-                data-size="normal"
-            >
-            </div>
-        </>
-    );
+  return <div id="cf-turnstile"></div>;
 };
 
 export default CaptchaSection;

@@ -19,6 +19,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+          async
+          defer
+        ></script>
+      </head>
       <body className={`${poppins.className} antialiased`}>
         <ThemeProvider
           attribute="class"

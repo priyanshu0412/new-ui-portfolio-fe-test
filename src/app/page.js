@@ -1,4 +1,5 @@
-"use client"
+"use client";
+import React, { useState } from "react";
 import {
   AboutMeSection,
   BlogSection,
@@ -9,27 +10,33 @@ import {
   RecentProjectSection,
   TechnicalExpertiseSection,
   WorkExpSection,
-  WorkTogetherSection
-} from '@/components'
-import React from 'react'
-
-// ------------------------------------
+  WorkTogetherSection,
+} from "@/components";
 
 const Home = () => {
+  const [verified, setVerified] = useState(false);
+
   return (
     <>
-      <Navbar />
-      <HeroSection />
-      <CaptchaSection />
-      <AboutMeSection />
-      <TechnicalExpertiseSection />
-      <RecentProjectSection />
-      <WorkExpSection />
-      <BlogSection />
-      <WorkTogetherSection />
-      <Footer />
+      {!verified ? (
+        <div className="flex h-screen justify-center items-center">
+          <CaptchaSection onVerify={() => setVerified(true)} />
+        </div>
+      ) : (
+        <>
+          <Navbar />
+          <HeroSection />
+          <AboutMeSection />
+          <TechnicalExpertiseSection />
+          <RecentProjectSection />
+          <WorkExpSection />
+          <BlogSection />
+          <WorkTogetherSection />
+          <Footer />
+        </>
+      )}
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
