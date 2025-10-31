@@ -24,6 +24,8 @@ const Footer = () => {
         FetchFooterData()
     }, [])
 
+    console.log("footerContent", footerContent)
+
     return (
         <>
             <div className="w-full flex justify-center items-center py-16 bg-gradient-to-br from-[#f1f5f980] to-[#ffffff] dark:from-[#09173c6c] dark:to-[#020817] dark:border-[#1e293b] border-t">
@@ -43,31 +45,27 @@ const Footer = () => {
                             </div>
 
                             <div className="flex gap-x-4">
-                                <div className="w-12 h-12 cursor-pointer rounded-full hover:bg-[#2563eb] flex justify-center items-center group ">
-                                    <Icon
-                                        icon={"line-md:github"}
-                                        className={
-                                            "text-black dark:text-white group-hover:text-white"
-                                        }
-                                    />
-                                </div>
+                                {
+                                    footerContent?.socialLinks?.map((ele, index) => {
+                                        const isEmail = ele?.url.includes("@");
+                                        const finalUrl = isEmail ? `mailto:${ele?.url}` : ele?.url;
 
-                                <div className="w-12 h-12 cursor-pointer rounded-full hover:bg-[#2563eb] flex justify-center items-center group ">
-                                    <Icon
-                                        icon={"meteor-icons:linkedin"}
-                                        className={
-                                            "text-black dark:text-white group-hover:text-white"
-                                        }
-                                    />
-                                </div>
-                                <div className="w-12 h-12 cursor-pointer rounded-full hover:bg-[#2563eb] flex justify-center items-center group ">
-                                    <Icon
-                                        icon={"material-symbols:mail-outline"}
-                                        className={
-                                            "text-black dark:text-white group-hover:text-white"
-                                        }
-                                    />
-                                </div>
+                                        return (
+                                            <Link
+                                                key={index}
+                                                href={finalUrl}
+                                                target={isEmail ? "_self" : "_blank"} // email tab me khulega, link new tab me
+                                                className="w-12 h-12 cursor-pointer rounded-full hover:bg-[#2563eb] flex justify-center items-center group"
+                                            >
+                                                <Icon
+                                                    icon={ele?.icon}
+                                                    className="text-black dark:text-white group-hover:text-white"
+                                                />
+                                            </Link>
+                                        );
+                                    })
+                                }
+
                             </div>
                         </div>
 

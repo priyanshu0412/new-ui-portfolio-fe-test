@@ -22,7 +22,6 @@ const WorkTogetherSection = () => {
         FetchFooterData()
     }, [])
 
-    console.log("footerContent?.followMeLinks", footerContent?.followMeLinks)
 
     return (
         <>
@@ -57,7 +56,9 @@ const WorkTogetherSection = () => {
                                 <p className="text-2xl font-bold">Lets Connect</p>
                             </div>
                             <div className="flex w-full flex-col gap-y-8">
-                                <div className="w-full flex items-center gap-x-4 p-4 rounded-2xl hover:bg-[#f1f5f980]/50 dark:hover:bg-[#1e293b80] transition-colors">
+                                <Link
+                                    href={`mailto:${footerContent?.email}`}
+                                    className="w-full flex items-center gap-x-4 p-4 rounded-2xl hover:bg-[#f1f5f980]/50 dark:hover:bg-[#1e293b80] transition-colors">
                                     <div className="w-14 h-14 flex justify-center items-center">
                                         <Icon
                                             width={24}
@@ -70,8 +71,10 @@ const WorkTogetherSection = () => {
                                         <p className="font-semibold text-lg">Email</p>
                                         <p className="text-[#64748b]">{footerContent?.email}</p>
                                     </div>
-                                </div>
-                                <div className="w-full flex items-center gap-x-4 p-4 rounded-2xl hover:bg-[#f1f5f980]/50 dark:hover:bg-[#1e293b80] transition-colors">
+                                </Link>
+                                <Link
+                                    href={`tel:${footerContent?.phone}`}
+                                    className="w-full flex items-center gap-x-4 p-4 rounded-2xl hover:bg-[#f1f5f980]/50 dark:hover:bg-[#1e293b80] transition-colors">
                                     <div className="w-14 h-14 flex justify-center items-center">
                                         <Icon
                                             width={24}
@@ -84,8 +87,10 @@ const WorkTogetherSection = () => {
                                         <p className="font-semibold text-lg">Phone</p>
                                         <p className="text-[#64748b]">{footerContent?.phone}</p>
                                     </div>
-                                </div>
-                                <div className="w-full flex items-center gap-x-4 p-4 rounded-2xl hover:bg-[#f1f5f980]/50 dark:hover:bg-[#1e293b80] transition-colors">
+                                </Link>
+                                <Link
+                                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(footerContent?.location)}`}
+                                    className="w-full flex items-center gap-x-4 p-4 rounded-2xl hover:bg-[#f1f5f980]/50 dark:hover:bg-[#1e293b80] transition-colors">
                                     <div className="w-14 h-14 flex justify-center items-center">
                                         <Icon
                                             width={24}
@@ -98,13 +103,13 @@ const WorkTogetherSection = () => {
                                         <p className="font-semibold text-lg">Location</p>
                                         <p className="text-[#64748b]">{footerContent?.location}</p>
                                     </div>
-                                </div>
+                                </Link>
                             </div>
                             <div className="flex flex-col gap-y-6">
                                 <p className="text-lg font-semibold">Follow Me</p>
                                 <div className="flex gap-x-4 justify-start items-center">
                                     {
-                                        footerContent?.followMeLinks.map((ele, index) => {
+                                        footerContent?.followMeLinks?.map((ele, index) => {
                                             return (
                                                 <Link
                                                     key={index}
