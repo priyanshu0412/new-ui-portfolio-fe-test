@@ -1,25 +1,23 @@
 "use client";
 import React, { useEffect } from "react";
 
-const CaptchaSection = ({ onVerify }) => {
+const CaptchaGlobal = ({ onVerify }) => {
   useEffect(() => {
-    if (window.turnstile) {
+    const siteKey = process.env.NEXT_PUBLIC_CLOUDFLARE_SITE_KEY;
+
+    if (window.turnstile && siteKey) {
       window.turnstile.render("#cf-turnstile", {
-        sitekey: process.env.NEXT_PUBLIC_CLOUDFLARE_SITE_KEY,
+        sitekey: siteKey,
+        size: "invisible",
         callback: (token) => {
           console.log("✅ Human verified:", token);
-          onVerify && onVerify(token);
+          onVerify(token);
         },
-        "response-field": false,
-        theme: "light",
-        size: "invisible", 
       });
     }
-    eslint
-    // eslint-disable-next-line
   }, []);
 
   return <div id="cf-turnstile"></div>;
 };
 
-export default CaptchaSection;
+export default CaptchaGlobal;
