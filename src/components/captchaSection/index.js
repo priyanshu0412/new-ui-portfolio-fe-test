@@ -15,6 +15,8 @@ const CaptchaSection = ({ onVerify }) => {
         size: "invisible", 
       });
     }
+    eslint
+    // eslint-disable-next-line
   }, []);
 
   return <div id="cf-turnstile"></div>;
