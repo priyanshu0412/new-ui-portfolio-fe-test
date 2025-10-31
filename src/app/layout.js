@@ -9,6 +9,9 @@ const poppins = Poppins({ subsets: ["latin"], weight: ["400", "600", "700"] });
 export const metadata = {
   title: "Priyanshu Agrawal | Full Stack Developer",
   description: "Portfolio of Priyanshu Agrawal",
+  icons: {
+    icon: "/meta_icon.jpg",
+  },
 };
 
 export default function RootLayout({ children }) {
