@@ -2,6 +2,7 @@
 import {
   AboutMeSection,
   BlogSection,
+  CaptchaSection,
   Footer,
   HeroSection,
   Navbar,
@@ -19,6 +20,7 @@ const Home = () => {
     <>
       <Navbar />
       <HeroSection />
+      <CaptchaSection />
       <AboutMeSection />
       <TechnicalExpertiseSection />
       <RecentProjectSection />
