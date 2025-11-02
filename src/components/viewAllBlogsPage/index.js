@@ -24,10 +24,13 @@ const AllBlogPageComponent = () => {
     };
 
     //Fetch blogs
-    // Fetch blogs
     const fetchBlogs = async (category = "All") => {
         let url = "/blog?sort=desc";
-        if (category !== "All") url += `&category=${category}`;
+
+        if (category !== "All") {
+            const encodedCategory = encodeURIComponent(category);
+            url += `&category=${encodedCategory}`;
+        }
 
         const res = await FetchApi({ url, method: "GET" });
 
@@ -37,6 +40,7 @@ const AllBlogPageComponent = () => {
             setSampleBlogData([]);
         }
     };
+
 
 
     //Initial load
