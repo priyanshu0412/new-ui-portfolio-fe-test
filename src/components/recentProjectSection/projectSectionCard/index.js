@@ -50,25 +50,25 @@ const ProjectSectionCard = ({ ele }) => {
 
                     <div className="absolute inset-0 justify-center items-center flex gap-x-4 ">
                         {ele?.githubLink && (
-                            <button className="font-medium hover:bg-[#f1f5f9cc] cursor-pointer shadow-sm text-xs px-3 py-2 text-[#020817] justify-center items-center bg-white rounded-full gap-x-4 hidden group-hover:flex dark:bg-[#1e293b] dark:hover:bg-[#1e293bcc] dark:text-white">
+                            <Link href={ele?.githubLink} className="font-medium hover:bg-[#f1f5f9cc] cursor-pointer shadow-sm text-xs px-3 py-2 text-[#020817] justify-center items-center bg-white rounded-full gap-x-4 hidden group-hover:flex dark:bg-[#1e293b] dark:hover:bg-[#1e293bcc] dark:text-white">
                                 <Icon
                                     icon={"line-md:github"}
                                     height={18}
                                     width={18}
                                 />
                                 Code
-                            </button>
+                            </Link>
                         )}
 
                         {ele?.livePreviewLink && (
-                            <button className="group-hover:flex hidden font-medium cursor-pointer shadow-sm text-xs px-3 py-2 text-white justify-center items-center bg-primary rounded-full gap-x-4">
+                            <Link href={ele?.livePreviewLink} className="group-hover:flex hidden font-medium cursor-pointer shadow-sm text-xs px-3 py-2 text-white justify-center items-center bg-primary rounded-full gap-x-4">
                                 <Icon
                                     icon={"lucide:external-link"}
                                     height={18}
                                     width={18}
                                 />
                                 Live
-                            </button>
+                            </Link>
                         )}
                     </div>
                 </div>
