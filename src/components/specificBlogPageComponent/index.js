@@ -27,7 +27,7 @@ const SpecificBlogPageComponent = ({ blog }) => {
                     <div className="max-w-[900px] w-full flex flex-col justify-center items-center px-8 lg:px-0">
 
                         {/* Upper Heading Section  */}
-                        <div className='flex flex-col pt-20 pb-10 w-full border-[#e2e8f0] border-b-[1px] gap-y-8'>
+                        <div className='flex flex-col pt-16 lg:pt-20 pb-10 w-full border-[#e2e8f0] border-b-[1px] gap-y-8'>
 
                             {/* Category & Tags  */}
                             <div className='flex flex-col sm:flex-row gap-4'>
@@ -116,7 +116,7 @@ const SpecificBlogPageComponent = ({ blog }) => {
 
 
                         {/* Author Card  */}
-                        <div className='w-full pt-20'>
+                        <div className='w-full pt-16 lg:pt-20'>
                             <div className='p-6 justify-start gap-x-6 flex-col sm:flex-row gap-y-6 sm:gap-y-0 dark:text-[#f8fafc] dark:bg-[#020817] w-full dark:border-[#1e293b] border-[#e2e8f0] bg-white rounded-xl shadow-lg border-[1px] flex items-center'>
                                 <div className='w-fit'>
                                     <div className='w-16 h-16 rounded-full bg-primary/10 flex  justify-center items-center'>
