@@ -83,7 +83,7 @@ const BlogCardReuse = ({ ele }) => {
                             icon={"tabler:clock"}
                         />
                         <p className="text-[#64748b] font-medium text-sm">
-                            {ele?.readTime} Read
+                            {ele?.readTime} Min Read
                         </p>
                     </div>
                     <Link className="w-fit" href={`/all-blogs/${ele?.slug}`}>
