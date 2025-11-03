@@ -1,181 +1,201 @@
 ```markdown
-# New UI Portfolio FE Test
-> A cutting-edge portfolio frontend crafted with creativity and innovation using Next.js
+# 🚀 new-ui-portfolio-fe-test: Crafting Elite Digital Experiences
 
-<div align="center">
-  <!-- Badges -->
-  <img alt="GitHub Language Count" src="https://img.shields.io/github/languages/count/priyanshu0412/new-ui-portfolio-fe-test" />
-  <img alt="Repository Size" src="https://img.shields.io/github/repo-size/priyanshu0412/new-ui-portfolio-fe-test" />
-  <img alt="Last Commit" src="https://img.shields.io/github/last-commit/priyanshu0412/new-ui-portfolio-fe-test" />
-</div>
+[![Stars](https://img.shields.io/github/stars/priyanshu0412/new-ui-portfolio-fe-test?style=for-the-badge&logo=github&colorB=8A2BE2)](https://github.com/priyanshu0412/new-ui-portfolio-fe-test/stargazers)
+[![Forks](https://img.shields.io/github/forks/priyanshu0412/new-ui-portfolio-fe-test?style=for-the-badge&logo=github&colorB=6A5ACD)](https://github.com/priyanshu0412/new-ui-portfolio-fe-test/network/members)
+[![Language](https://img.shields.io/github/languages/top/priyanshu0412/new-ui-portfolio-fe-test?style=for-the-badge&logo=javascript&colorB=F7DF1E)](https://github.com/priyanshu0412/new-ui-portfolio-fe-test)
+[![License](https://img.shields.io/badge/License-UNLICENSED-red.svg?style=for-the-badge)](https://github.com/priyanshu0412/new-ui-portfolio-fe-test/blob/main/LICENSE) <!-- Placeholder for no license -->
 
-## ✨ Overview
-The **New UI Portfolio FE Test** project leverages the power of Next.js to deliver a fast and responsive frontend experience for portfolios. Ideal for developers who aim to showcase their projects and skills, this template offers superior performance and a sleek interface. Whether you're looking to build your online presence or explore Next.js, this project serves as a perfect starting point.
+---
 
-## 🎯 Features
-- 🚀 **High Performance**: Powered by Next.js and optimized for speed
-- 🎨 **Customizable Themes**: Easily switch and modify themes with `next-themes`
-- 🖥️ **Responsive Design**: Ensures a seamless experience across devices
-- 🛠️ **Developer Friendly**: Built with modularity and ease of use in mind
-- 💼 **Professional UI/UX**: Crafted with MUI and Tailwind CSS for a clean look
+## ✨ Project Overview
+
+This repository houses the frontend codebase for a cutting-edge portfolio UI, designed to showcase projects and skills with elegance and responsiveness. Built with a modern JavaScript stack, it leverages the power of Next.js for a robust and performant user experience, enhanced by a fully customizable design system. This project serves as a dynamic and interactive platform to present a developer's work in the best light.
+
+---
+
+## 🌟 Key Features
+
+*   ⚡ **Blazing Fast Performance**: Optimized with Next.js for server-side rendering (SSR) and static site generation (SSG) capabilities.
+*   💅 **Sleek & Responsive Design**: Crafted with Tailwind CSS and Material-UI, ensuring a stunning and adaptive interface across all devices.
+*   🌙 **Dynamic Theming**: Effortlessly switch between light and dark modes with `next-themes` for a personalized viewing experience.
+*   🚀 **Smooth Animations**: Engaging UI transitions powered by `framer-motion` for a delightful user interaction.
+*   📝 **Form Handling & Validation**: Robust form capabilities with `formik` and `yup` for reliable user input.
+*   🎯 **SEO Friendly**: Benefits from Next.js's built-in SEO features for better discoverability.
+*   🎨 **Icon Integration**: Rich icon library support with `@iconify/react` for expressive UI elements.
+*   🔄 **Effortless Scrolling**: Enhanced navigation with `react-scroll` for smooth in-page transitions.
+
+---
 
 ## 🛠️ Tech Stack
 
-| Technology      | Description                                                            |
-|-----------------|------------------------------------------------------------------------|
-| ⚛️ React        | Frontend framework used for building the UI components                 |
-| ▶️ Next.js      | Framework providing fast server-side rendering and static generation   |
-| 🌀 Tailwind CSS | Utility-first CSS framework for styling                                |
-| 🌈 MUI          | Used for material design components                                    |
-| ⚙️ TurboPack    | For ultra-fast builds                                                   |
+This project is built using a powerful and modern set of technologies:
 
-## 📋 Prerequisites
+### 🚀 Frontend Frameworks & Libraries
 
-- Node.js >= 14.x
-- npm >= 6.x
+*   **Next.js** `^14.0.0` - The React framework for production.
+*   **React** `^18.2.0` & **React DOM** `^18.2.0` - A declarative, efficient, and flexible JavaScript library for building user interfaces.
+*   **Framer Motion** `^11.0.0` - A production-ready motion library for React.
 
-## 🚀 Quick Start
+### 🎨 Styling & UI Components
 
-### Installation
+*   **Tailwind CSS** `^3.4.0` - A utility-first CSS framework for rapidly building custom designs.
+*   **Material-UI (MUI)** `^5.15.0` - A comprehensive suite of UI tools to help you ship new features faster.
+    *   `@emotion/react` `^11.11.0`
+    *   `@emotion/styled` `^11.11.0`
+*   **Next-Themes** `^0.3.0` - An elegant, simple, and functional theme switcher for Next.js.
+*   **Tailwindcss Animate** `^1.0.7` - A plugin for Tailwind CSS that provides ready-to-use animations.
+
+### 🗄️ Utilities & Others
+
+*   **Formik** `^2.4.0` - Build forms in React, without the tears.
+*   **Yup** `^1.3.0` - Dead simple object schema validation.
+*   **React Scroll** `^1.9.0` - React scroll component.
+*   **Iconify React** `^4.1.0` - Icon library for React.
+*   **@tailwindcss/typography** `^0.5.10` - A Tailwind CSS plugin for rendering beautiful typographic defaults.
+
+### ⚙️ Development Tools
+
+*   **ESLint** `^8.56.0` - Pluggable JavaScript linter.
+*   **Prettier** `^3.2.0` - An opinionated code formatter.
+*   **Autoprefixer** `^10.4.0` - Parse CSS and add vendor prefixes to rules.
+*   **PostCSS** `^8.4.0` - A tool for transforming CSS with JavaScript.
+
+---
+
+## 📦 Installation & Setup
+
+To get this project up and running on your local machine, follow these steps:
+
+1.  **Clone the repository:**
+
+    ```bash
+    git clone https://github.com/priyanshu0412/new-ui-portfolio-fe-test.git
+    cd new-ui-portfolio-fe-test
+    ```
+
+2.  **Install dependencies:**
+
+    ```bash
+    npm install
+    # or
+    yarn install
+    # or
+    pnpm install
+    ```
+
+3.  **Create a `.env` file** (if necessary, though not explicitly required by the current dependencies):
+
+    ```
+    # Example .env content if needed for future API keys or environment variables
+    # NEXT_PUBLIC_EXAMPLE_VAR=your_value
+    ```
+
+---
+
+## 🚀 Usage
+
+Once the project is set up, you can run it in development mode or build it for production.
+
+### Development Server
+
+To run the development server:
 
 ```bash
-# Clone the repository
-git clone https://github.com/priyanshu0412/new-ui-portfolio-fe-test.git
-
-# Navigate to directory
-cd new-ui-portfolio-fe-test
-
-# Install dependencies
-npm install
-```
-
-### Configuration
-
-Create a `.env` file in the root directory:
-
-```env
-NEXT_PUBLIC_API_URL=your_api_url
-NEXT_PUBLIC_ANALYTICS_ID=your_analytics_id
-```
-
-### Running the Application
-
-```bash
-# Development
 npm run dev
-
-# Production
-npm run build && npm run start
+# or
+yarn dev
+# or
+pnpm dev
 ```
 
-## 💡 Usage
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-```javascript
-import { Greeting } from 'components';
+You can start editing the page by modifying files inside the `src/app` directory. The page auto-updates as you edit the file.
 
-const App = () => <Greeting name="Priyanshu" />;
+### Building for Production
 
-export default App;
-```
-
-**Expected output:**
-```
-Hello, Priyanshu!
-```
-
-## 🏗️ Project Structure
-
-```
-new-ui-portfolio-fe-test/
-├── public/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── styles/
-├── .env
-└── package.json
-```
-
-## 🔧 Configuration Options
-
-| Option                 | Type    | Default        | Description                       |
-|------------------------|---------|----------------|-----------------------------------|
-| API_URL                | string  | 'localhost'    | URL of the API backend            |
-| ANALYTICS_ID           | string  | 'UA-XXXXXXXXX' | Google Analytics tracking ID      |
-
-## 📸 Screenshots / Demo
-
-![Demo](https://new-ui-portfolio-fe-test.vercel.app/demo.gif)
-
-[Live Demo](https://new-ui-portfolio-fe-test.vercel.app)
-
-## 🧪 Running Tests
-
-```bash
-# Run all tests
-npm test
-```
-
-## 📦 Building for Production
+To build the application for production:
 
 ```bash
 npm run build
+# or
+yarn build
+# or
+pnpm build
 ```
 
-## 🚢 Deployment
+This will create an optimized production build in the `.next` folder.
 
-This project is set up to deploy seamlessly on [Vercel](https://vercel.com/). Follow these commands:
+### Starting Production Build
 
-1. Create a new Vercel project linked to your GitHub repository.
-2. Deploy the app via Vercel’s interface or CLI.
+To start the built application in production mode:
+
+```bash
+npm run start
+# or
+yarn start
+# or
+pnpm start
+```
+
+---
+
+## 📂 Project Structure
+
+The project follows a standard Next.js directory structure, with key configurations for styling and linting:
+
+```
+new-ui-portfolio-fe-test/
+├── .gitignore
+├── README.md
+├── eslint.config.mjs          # ESLint configuration for code quality
+├── jsconfig.json              # JavaScript configuration for VS Code/TypeScript
+├── next.config.mjs            # Next.js configuration
+├── package-lock.json
+├── package.json               # Project dependencies and scripts
+├── postcss.config.js          # PostCSS configuration for Tailwind CSS
+├── public/                    # Static assets (images, fonts, etc.)
+└── src/                       # Main source code directory
+    └── app/                   # Next.js App Router root
+        └── ...
+└── tailwind.config.js         # Tailwind CSS configuration
+```
+
+---
 
 ## 🤝 Contributing
 
-We welcome contributions to the project!
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also open an issue with the tag "enhancement".
 
-## 🐛 Known Issues
+1.  Fork the Project
+2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4.  Push to the Branch (`git push origin feature/AmazingFeature`)
+5.  Open a Pull Request
 
-- None reported yet. Feel free to open an issue if you find any bugs.
-
-## 🗺️ Roadmap
-
-- [ ] Add dark mode support
-- [ ] Implement a contact form
-- [ ] Enhance accessibility features
-
-## 📄 License
-
-This project is not yet licensed. If you plan on using or contributing to the project, please contact the author.
-
-## 👥 Authors
-
-- **Priyanshu** - *Initial work* - [GitHub](https://github.com/priyanshu0412)
-
-See also the list of [contributors](https://github.com/priyanshu0412/new-ui-portfolio-fe-test/contributors) who participated in this project.
-
-## 🙏 Acknowledgments
-
-- Thanks to the creators of Next.js and Vercel
-- Inspiration drawn from various online portfolios
-
-## 📬 Contact
-
-- Email: contact@example.com
-- LinkedIn: [Priyanshu](https://linkedin.com/in/example)
-- Project Link: [GitHub Repository](https://github.com/priyanshu0412/new-ui-portfolio-fe-test)
-
-## ⭐ Show your support
-
-Give a ⭐️ if you like this project!
 ---
 
-<div align="center">
-  Made with ❤️ by Priyanshu
-</div>
+## 📝 License
+
+This project is currently **UNLICENSED**. For specific licensing terms, please contact the author.
+
+---
+
+## 👤 Author & Contact
+
+**Priyanshu**
+
+*   GitHub: [@priyanshu0412](https://github.com/priyanshu0412)
+*   You can reach me via GitHub issues or my profile for any questions.
+
+---
+
+## ⭐ Star the Repo!
+
+If you found this project useful or interesting, please give it a star! It helps to gain visibility and encourage further development. Thank you!
+
+[![Star this repository](https://img.shields.io/github/stars/priyanshu0412/new-ui-portfolio-fe-test?style=social)](https://github.com/priyanshu0412/new-ui-portfolio-fe-test/stargazers)
 ```
