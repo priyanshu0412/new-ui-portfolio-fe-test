@@ -73,7 +73,6 @@ export const techIconsHeroSection = [
     {
         icon: "skill-icons:git",
         bottom: "-5%",
-        
         left: "50%",
         translate: "-50%, 0",
         delay: 0
