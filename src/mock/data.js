@@ -84,19 +84,19 @@ export const techIconsHeroSection = [
 export const aboutMeBigCard = [
     {
         icon: "iconoir:calendar",
-        heading: "3+",
+        heading: "1.5+",
         desc: "Years Experience",
         color: "#3b82f6"
     },
     {
         icon: "tabler:code",
-        heading: "15+",
+        heading: "5+",
         desc: "Projects Completed",
         color: "#22c55e"
     },
     {
         icon: "mdi:people-outline",
-        heading: "8+",
+        heading: "5+",
         desc: "Happy Client",
         color: "#a855f7"
     },

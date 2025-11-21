@@ -16,20 +16,28 @@ const AllBlogPageComponent = () => {
     const [categories, setCategories] = useState([]);
     const [activeCategory, setActiveCategory] = useState("All");
     const [showDropdown, setShowDropdown] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [debouncedValue, setDebouncedValue] = useState("");
 
-    //Fetch categories
+    // -------------------- FETCH CATEGORIES --------------------
     const fetchCategories = async () => {
         const res = await FetchApi({ url: "/blogCategory", method: "GET" });
         if (res.success) setCategories(res?.data || []);
     };
 
-    //Fetch blogs
-    const fetchBlogs = async (category = "All") => {
+    // -------------------- FETCH BLOGS (API CALL) --------------------
+    const fetchBlogs = async (category = "All", search = "") => {
         let url = "/blog?sort=desc";
 
         if (category !== "All") {
             const encodedCategory = encodeURIComponent(category);
             url += `&category=${encodedCategory}`;
+        }
+
+
+        if (search) {
+            const encodedSearch = encodeURIComponent(search);
+            url += `&search=${encodedSearch}`;
         }
 
         const res = await FetchApi({ url, method: "GET" });
@@ -41,25 +49,45 @@ const AllBlogPageComponent = () => {
         }
     };
 
-
-
-    //Initial load
+    // -------------------- INITIAL LOAD --------------------
     useEffect(() => {
         fetchCategories();
         fetchBlogs();
     }, []);
 
-    //Handle category click
+    // -------------------- CATEGORY CHANGE HANDLER --------------------
     const handleCategoryChange = (category) => {
         setActiveCategory(category);
-        fetchBlogs(category);
+        fetchBlogs(category, debouncedValue);
         setShowDropdown(false);
+        setSearchTerm("")
     };
 
-    //Split categories (main 5 + extra)
+    // -------------------- SEARCH INPUT HANDLER --------------------
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+        setActiveCategory("All")
+    };
+
+    // -------------------- DEBOUNCING --------------------
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setDebouncedValue(searchTerm);
+        }, 500);
+
+        return () => clearTimeout(timer);
+    }, [searchTerm]);
+
+
+    useEffect(() => {
+        fetchBlogs(activeCategory, debouncedValue);
+    }, [debouncedValue, activeCategory]);
+
+    // -------------------- CATEGORY SPLIT --------------------
     const mainCategories = categories.slice(0, 10);
     const extraCategories = categories.slice(10);
 
+    // ----------------------------------------
     return (
         <div className="w-full dark:bg-[#020817]">
             <CustomNavbar path={"/"} title="Blog & Thoughts" subTitleBtn="Home" />
@@ -69,6 +97,7 @@ const AllBlogPageComponent = () => {
                     className={`max-w-[1300px] h-full flex-col w-full gap-x-4 flex justify-center items-start ${coustomXL ? "px-0" : "px-8"
                         }`}
                 >
+                    {/* ---------------------------------------- */}
                     {/* Heading */}
                     <div className="w-full flex-col gap-y-6 flex justify-center items-center text-center pb-16">
                         <p className="text-4xl md:text-5xl font-bold text-center">
@@ -81,25 +110,29 @@ const AllBlogPageComponent = () => {
                         </p>
                     </div>
 
+                    {/* ---------------------------------------- */}
                     {/* Search & Filter */}
                     <div className="w-full items-start gap-y-4 flex-col flex justify-between ">
-                        {/* Search */}
-                        <div className="flex shadow justify-center items-center gap-x-4 w-full  border-[1px] rounded-xl dark:border-[#1e293b] border-[#e2e8f0] py-2 px-3 focus-within:border-primary dark:focus-within:border-white transition-all duration-200">
+                        {/* 🔍 Search Bar */}
+                        <div className="flex shadow justify-center items-center gap-x-4 w-full border-[1px] rounded-xl dark:border-[#1e293b] border-[#e2e8f0] py-2 px-3 focus-within:border-primary dark:focus-within:border-white transition-all duration-200">
                             <Icon className="text-[#64748b]" icon="iconoir:search" />
                             <input
                                 type="text"
+                                value={searchTerm}
+                                onChange={handleSearchChange}
                                 className="w-full md:text-sm focus:outline-none border-none bg-transparent"
                                 placeholder="Search Blogs..."
                             />
                         </div>
 
-                        {/* Filter Buttons */}
+                        {/* ---------------------------------------- */}
+                        {/* Category Filter Buttons */}
                         <div className="flex flex-wrap gap-3 items-center w-full relative">
                             {/* All */}
                             <button
                                 onClick={() => handleCategoryChange("All")}
                                 className={`shadow font-medium text-xs px-2 lg:px-3 py-2 rounded-md transition-all 
-                  ${activeCategory === "All"
+                                ${activeCategory === "All"
                                         ? "bg-primary text-white"
                                         : "bg-white dark:bg-[#020817] dark:text-white border border-[#e2e8f0] dark:border-[#1e293b] hover:bg-[#f1f5f9] dark:hover:bg-[#1e293b]"
                                     }`}
@@ -113,7 +146,7 @@ const AllBlogPageComponent = () => {
                                     key={index}
                                     onClick={() => handleCategoryChange(cat.name)}
                                     className={`shadow font-medium text-xs px-2 lg:px-3 py-2 rounded-md transition-all 
-                    ${activeCategory === cat.name
+                                    ${activeCategory === cat.name
                                             ? "bg-primary text-white"
                                             : "bg-white dark:bg-[#020817] dark:text-white border border-[#e2e8f0] dark:border-[#1e293b] hover:bg-[#f1f5f9] dark:hover:bg-[#1e293b]"
                                         }`}
@@ -134,7 +167,8 @@ const AllBlogPageComponent = () => {
                                             icon={"gridicons:dropdown"}
                                             className={`${showDropdown ? "rotate-180 transition-all duration-300" : ""}`}
                                             height={20}
-                                            width={20} />
+                                            width={20}
+                                        />
                                     </button>
 
                                     {showDropdown && (
@@ -155,6 +189,7 @@ const AllBlogPageComponent = () => {
                         </div>
                     </div>
 
+                    {/* ---------------------------------------- */}
                     <p className="pt-8 text-[#64748b]">
                         Showing {SampleBlogData.length} articles
                     </p>
@@ -175,7 +210,7 @@ const AllBlogPageComponent = () => {
                         </div>
                     )}
 
-                    {/*  All / Filtered Articles */}
+                    {/* All / Filtered Articles */}
                     <div className="w-full flex flex-col py-10 gap-y-8">
                         <p className="text-2xl font-semibold">
                             {activeCategory === "All"
@@ -197,7 +232,6 @@ const AllBlogPageComponent = () => {
                             )}
                         </div>
                     </div>
-
 
                     {/* Newsletter */}
                     <NewsLetter />
