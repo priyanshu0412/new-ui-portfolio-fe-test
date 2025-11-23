@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
 import Icon from '../icon';
 import {
     aboutMeBigCard,
@@ -9,12 +9,60 @@ import { useSafeMediaQuery } from '@/hooks/useSafeMediaQuery';
 import AboutMeBigCardReuse from './aboutMeBigCardReuse';
 import AboutMeSmallCardReuse from './aboutMeSmallCardReuse';
 import Link from 'next/link';
+import { FetchApi } from '@/utilities/fetchApi';
 
 // ----------------------------------------------
 
 const AboutMeSection = () => {
 
     const coustomXL = useSafeMediaQuery("(min-width:1364px)");
+
+    const [downloading, setDownloading] = useState(false);
+
+
+    const handleDownload = async () => {
+        try {
+            setDownloading(true);
+
+            const res = await FetchApi({
+                url: "/resume/active",
+                method: "GET"
+            });
+
+            if (!res.success) {
+                setDownloading(false);
+                return alert("Active resume not found");
+            }
+
+            const resumeUrl = res?.data?.url;
+            if (!resumeUrl) {
+                setDownloading(false);
+                return alert("Resume URL missing!");
+            }
+
+            const fileRes = await fetch(resumeUrl);
+            const blob = await fileRes.blob();
+
+            const blobUrl = window.URL.createObjectURL(blob);
+
+            const link = document.createElement("a");
+            link.href = blobUrl;
+            link.download = "Priyanshu-Agrawal-Resume.pdf";
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+
+            window.URL.revokeObjectURL(blobUrl);
+
+            setDownloading(false);
+
+        } catch (err) {
+            console.error(err);
+            alert("Something went wrong while downloading resume");
+            setDownloading(false);
+        }
+    };
+
 
     return (
         <>
@@ -72,17 +120,26 @@ const AboutMeSection = () => {
                                 From concept to deployment, I ensure every project meets the highest standards of quality and performance. My approach combines technical expertise with creative problem-solving to bring your vision to life.
                             </p>
                             <div className='flex flex-col md:flex-row gap-y-4 md:gap-x-4 pt-2'>
-                                <Link
-                                    href="Priyanshu-Agrawal-CV.pdf"
-                                    download="Priyanshu-Agrawal-CV.pdf"
-                                    className='flex dark:hover:bg-[#1e293b] border-[#e2e8f0] dark:bg-[#020817] dark:border-[#1e293b]  hover:bg-[#f1f5f9] rounded-full shadow-sm border-[1px] justify-center font-medium text-sm py-2 px-4 items-center gap-x-2'>
-                                    <Icon
-                                        icon={"material-symbols:download-rounded"}
-                                        width={20}
-                                        height={20}
-                                    />
-                                    <p className='text-[#020817] dark:text-white'>Download Resume</p>
-                                </Link>
+                                <button
+                                    onClick={handleDownload}
+                                    disabled={downloading}
+                                    className={`flex dark:hover:bg-[#1e293b] border-[#e2e8f0] dark:bg-[#020817] dark:border-[#1e293b]  
+    hover:bg-[#f1f5f9] rounded-full shadow-sm border-[1px] justify-center font-medium text-sm py-2 px-4 items-center gap-x-2
+    ${downloading && "opacity-50 cursor-not-allowed"}`}
+                                >
+                                    {
+                                        downloading ? (
+                                            <Icon icon="eos-icons:loading" width={20} height={20} />
+                                        ) : (
+                                            <Icon icon="material-symbols:download-rounded" width={20} height={20} />
+                                        )
+                                    }
+
+                                    <p className='text-[#020817] dark:text-white'>
+                                        {downloading ? "Downloading..." : "Download Resume"}
+                                    </p>
+                                </button>
+
                                 <Link href={"/#contact"}>
                                     <button className='flex dark:hover:bg-[#1e293b] hover:border-[#e2e8f0] hover:bg-[#f1f5f9] rounded-full justify-center font-medium text-sm py-2 px-4 items-center gap-x-2'>
                                         <Icon
