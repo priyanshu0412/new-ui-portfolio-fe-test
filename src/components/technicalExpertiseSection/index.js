@@ -1,30 +1,15 @@
 "use client";
-import React, { useEffect, useState } from "react";
+
+import React from "react";
 import Icon from "../icon";
-// import { FeaturedSkillsData } from "@/mock/data";
 import { useSafeMediaQuery } from "@/hooks/useSafeMediaQuery";
 import TechSkillsCardReuse from "./techSkillsCardReuse";
-import { FetchApi } from "@/utilities/fetchApi";
 
 // -------------------------------------------
 
-const TechnicalExpertiseSection = () => {
+const TechnicalExpertiseSection = ({ data = [] }) => {
 
     const coustomXL = useSafeMediaQuery("(min-width:1364px)");
-    const [FeaturedSkillsData, setFeaturedSkillsData] = useState([])
-
-    const FetchExpData = async () => {
-        const res = await FetchApi({ url: "/skills" });
-        if (res.success) {
-            setFeaturedSkillsData(res?.data);
-        }
-    }
-
-    useEffect(() => {
-        FetchExpData()
-    }, [])
-
-
 
     return (
         <>
@@ -55,7 +40,7 @@ const TechnicalExpertiseSection = () => {
 
                     {/* Skills Section */}
                     <div className="w-full flex flex-col justify-center items-center gap-y-16">
-                        {FeaturedSkillsData.map((ele, index) => {
+                        {data.map((ele, index) => {
                             return (
                                 <TechSkillsCardReuse ele={ele} key={index} />
                             )

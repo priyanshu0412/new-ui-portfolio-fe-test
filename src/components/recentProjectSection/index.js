@@ -1,38 +1,16 @@
 "use client";
-import React, { useEffect, useState } from "react";
+
+import React from "react";
 import Icon from "../icon";
 import Link from "next/link";
 import ProjectSectionCard from "./projectSectionCard";
-import { FetchApi } from "@/utilities/fetchApi";
 import { useSafeMediaQuery } from "@/hooks/useSafeMediaQuery";
 
 // ----------------------------------------------
 
-const RecentProjectSection = () => {
+const RecentProjectSection = ({ data = [] }) => {
+
     const coustomXL = useSafeMediaQuery("(min-width:1364px)");
-
-    const [SampleProjectsData, setSampleProjectsData] = useState([])
-
-    const truncateDesc = (text = "", limit = 85) => {
-        if (!text) return "";
-        return text.length > limit ? text.substring(0, limit) + "..." : text;
-    };
-
-    const truncateHeading = (text = "", limit = 20) => {
-        if (!text) return "";
-        return text.length > limit ? text.substring(0, limit) + "..." : text;
-    };
-
-    const FetchProjectData = async () => {
-        const res = await FetchApi({ url: "/project", method: "GET" })
-        if (res.success) {
-            setSampleProjectsData(res?.data?.projects)
-        }
-    }
-
-    useEffect(() => {
-        FetchProjectData()
-    }, [])
 
     return (
         <>
@@ -62,8 +40,8 @@ const RecentProjectSection = () => {
 
                     <div className="w-full gap-6 flex flex-wrap items-center justify-center">
                         {
-                            SampleProjectsData && SampleProjectsData.length > 0 ? (
-                                SampleProjectsData.slice(0, 6).map((ele, index) => (
+                            data && data.length > 0 ? (
+                                data.slice(0, 6).map((ele, index) => (
                                     <ProjectSectionCard ele={ele} key={index} />
                                 ))
                             ) : (

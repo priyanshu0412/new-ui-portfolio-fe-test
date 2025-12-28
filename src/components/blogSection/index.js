@@ -1,28 +1,16 @@
 "use client";
-import React, { useEffect, useState } from "react";
+
+import React from "react";
 import Icon from "../icon";
 import { useSafeMediaQuery } from "@/hooks/useSafeMediaQuery";
 import Link from "next/link";
 import BlogCardReuse from "./blogCardReuse";
-import { FetchApi } from "@/utilities/fetchApi";
 
 // ----------------------------------------
 
-const BlogSection = () => {
+const BlogSection = ({ data = [] }) => {
 
     const coustomXL = useSafeMediaQuery("(min-width:1364px)");
-    const [SampleBlogData, setSampleBlogData] = useState([])
-
-    const FetchBlogData = async () => {
-        const res = await FetchApi({ url: "/blog?isFeatured=true&sort=desc", method: "GET" })
-        if (res.success) {
-            setSampleBlogData(res?.data?.data)
-        }
-    }
-
-    useEffect(() => {
-        FetchBlogData()
-    }, [])
 
     return (
         <>
@@ -52,8 +40,8 @@ const BlogSection = () => {
 
                     <div className="w-full gap-6 flex flex-wrap items-center justify-center">
                         {
-                            SampleBlogData.length > 0 ? (
-                                SampleBlogData.slice(0, 3).map((ele, index) => (
+                            data.length > 0 ? (
+                                data.slice(0, 3).map((ele, index) => (
                                     <BlogCardReuse ele={ele} key={index} />
                                 ))
                             ) : (

@@ -1,27 +1,13 @@
 "use client";
-import React, { useEffect, useState } from "react";
+
+import React from "react";
 import Icon from "../icon";
 import ContactForm from "../contactForm";
-import { FetchApi } from "@/utilities/fetchApi";
 import Link from "next/link";
 
 // -----------------------------------------
 
-const WorkTogetherSection = () => {
-
-    const [footerContent, setFooterContent] = useState(null)
-
-    const FetchFooterData = async () => {
-        const res = await FetchApi({ url: "/footerContent" });
-        if (res.success) {
-            setFooterContent(res?.data?.data[0]);
-        }
-    }
-
-    useEffect(() => {
-        FetchFooterData()
-    }, [])
-
+const WorkTogetherSection = ({ footerContent }) => {
 
     return (
         <>

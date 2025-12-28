@@ -1,29 +1,16 @@
 "use client";
-import React, { useEffect, useState } from "react";
+
+import React from "react";
 import Icon from "../icon";
 import { useSafeMediaQuery } from "@/hooks/useSafeMediaQuery";
 import Link from "next/link";
 import { navbarData } from "@/mock/data";
-import { FetchApi } from "@/utilities/fetchApi";
 
 // ----------------------------------------
 
-const Footer = () => {
+const Footer = ({ footerContent }) => {
 
     const coustomXL = useSafeMediaQuery("(min-width:1364px)");
-    const [footerContent, setFooterContent] = useState(null)
-
-    const FetchFooterData = async () => {
-        const res = await FetchApi({ url: "/footerContent" });
-        if (res.success) {
-            setFooterContent(res?.data?.data[0]);
-        }
-    }
-
-    useEffect(() => {
-        FetchFooterData()
-    }, [])
-
 
     return (
         <>

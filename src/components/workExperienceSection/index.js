@@ -1,27 +1,15 @@
 "use client";
-import React, { useEffect, useState } from "react";
+
+import React from "react";
 import Icon from "../icon";
 import { useSafeMediaQuery } from "@/hooks/useSafeMediaQuery";
 import WorkExpCardReuse from "./workExpCardReuse";
-import { FetchApi } from "@/utilities/fetchApi";
 
 // -----------------------------------------------
 
-const WorkExpSection = () => {
+const WorkExpSection = ({ data = [] }) => {
 
     const coustomXL = useSafeMediaQuery("(min-width:1364px)");
-    const [workExpSection, setWorkExpSection] = useState([])
-
-    const FetchExpData = async () => {
-        const res = await FetchApi({ url: "/exp" });
-        if (res.success) {
-            setWorkExpSection(res?.data);
-        }
-    }
-
-    useEffect(() => {
-        FetchExpData()
-    }, [])
 
     return (
         <>
@@ -55,8 +43,8 @@ const WorkExpSection = () => {
                             <span className="absolute h-full top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-purple-500 to-cyan-500"></span>
                         </div>
                         <div className="flex flex-col gap-y-8">
-                            {workExpSection && workExpSection.length > 0 ? (
-                                workExpSection.map((ele, index) => (
+                            {data && data.length > 0 ? (
+                                data.map((ele, index) => (
                                     <WorkExpCardReuse ele={ele} key={index} />
                                 ))
                             ) : (

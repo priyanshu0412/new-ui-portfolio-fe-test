@@ -15,16 +15,6 @@ const SpecificProjectPageComponent = ({ project }) => {
     const coustomXL = useSafeMediaQuery("(min-width:1364px)");
     const [SampleProjectsData, setSampleProjectsData] = useState([]);
 
-    const truncateDesc = (text = "", limit = 85) => {
-        if (!text) return "";
-        return text.length > limit ? text.substring(0, limit) + "..." : text;
-    };
-
-    const truncateHeading = (text = "", limit = 20) => {
-        if (!text) return "";
-        return text.length > limit ? text.substring(0, limit) + "..." : text;
-    };
-
     const FetchFeaturedProject = async () => {
         const res = await FetchApi({ url: "/project?featured=true", method: "GET" });
         if (res.success) setSampleProjectsData(res?.data?.projects || []);
