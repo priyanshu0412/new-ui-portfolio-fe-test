@@ -66,3 +66,8 @@ body {
 .text-gradient {
     @apply bg-gradient-to-r from-primary via-blue-600 to-cyan-600 bg-clip-text text-transparent;
 }
+
+@keyframes toast-progress {
+    from { width: 100%; }
+    to { width: 0%; }
+}

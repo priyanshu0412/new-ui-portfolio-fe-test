@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Icon from "../icon";
+import Toast from "../toast";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { FetchApi } from "@/utilities/fetchApi";
@@ -11,6 +12,7 @@ import { FetchApi } from "@/utilities/fetchApi";
 const ContactForm = () => {
 
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [toast, setToast] = useState(null);
 
     const validationSchema = Yup.object({
         name: Yup.string().required("Name is required"),
@@ -41,13 +43,13 @@ const ContactForm = () => {
                 });
 
                 if (res?.success) {
-                    alert("Message sent successfully!");
+                    setToast({ type: "success", message: "Your message has been sent successfully. I'll get back to you soon!" });
                     resetForm();
                 } else {
-                    alert("Failed to send message!");
+                    setToast({ type: "error", message: "Failed to send your message. Please try again later." });
                 }
             } catch (error) {
-                alert("Something went wrong!");
+                setToast({ type: "error", message: "Something went wrong. Please check your connection and try again." });
             } finally {
                 setIsSubmitting(false);
             }
@@ -56,6 +58,15 @@ const ContactForm = () => {
 
     return (
         <>
+            {/* Toast Notification */}
+            {toast && (
+                <Toast
+                    type={toast.type}
+                    message={toast.message}
+                    onClose={() => setToast(null)}
+                />
+            )}
+
             <div className="flex justify-center items-center w-full lg:w-[48%]">
                 <form
                     onSubmit={formik.handleSubmit}
