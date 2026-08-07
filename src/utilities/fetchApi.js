@@ -24,9 +24,22 @@ export const FetchApi = async ({ url, method = "GET", data = null, token = null 
         const response = await fetch(fullUrl, options);
 
         const contentType = response.headers.get("content-type");
-        const parsedData = contentType?.includes("application/json")
-            ? await response.json()
-            : await response.text();
+        let parsedData;
+        try {
+            parsedData = contentType?.includes("application/json")
+                ? await response.json()
+                : await response.text();
+        } catch {
+            parsedData = { message: "Failed to parse response" };
+        }
+
+        if (response.status === 429) {
+            return {
+                status: 429,
+                success: false,
+                data: { message: parsedData?.message || "Too many requests. Please try again later." },
+            };
+        }
 
         return {
             status: response.status,
@@ -38,8 +51,7 @@ export const FetchApi = async ({ url, method = "GET", data = null, token = null 
         return {
             status: 500,
             success: false,
-            data: { message: "Something went wrong" },
+            data: { message: "Network or server error. Please try again." },
         };
     }
 };
-
